@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".Activity.Fragments.HomePage">
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+  <!-- TODO: Update blank fragment layout -->
+  <LinearLayout
+    android:id="@+id/layout_all"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="60dp"
+    android:orientation="horizontal">
+  <TextView
+    android:id="@+id/txt_all"
+    android:padding="20dp"
+    android:textSize="24sp"
+    android:layout_weight="1"
+    android:textColor="@color/black"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="Trading Cards"/>
+
+    <TextView
+      android:id="@+id/txt_titleShowAll"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:gravity="center_vertical|end"
+      android:padding="20dp"
+      android:text="Show all >"
+      android:textColor="#0000ff"
+      android:textSize="14sp" />
+  </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/recyclerview_allProducts"
+      android:layout_width="match_parent"
+      android:layout_height="80dp"
+      android:layout_marginTop="10dp"
+      android:padding="20dp"
+      />
+
+  <LinearLayout
+    android:id="@+id/layout_topRaterd"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:orientation="horizontal">
+
+  <TextView
+    android:id="@+id/txt_topRated"
+    android:padding="20dp"
+    android:textSize="24sp"
+    android:layout_weight="1"
+    android:textColor="@color/black"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="Trading Cards"/>
+
+    <TextView
+      android:id="@+id/txt_topRatedShowAll"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:gravity="center_vertical|end"
+      android:padding="20dp"
+      android:text="Show all >"
+      android:textColor="#0000ff"
+      android:textSize="14sp" />
+  </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/recyclerview_topRatedProducts"
+      android:layout_width="match_parent"
+      android:layout_height="80dp"
+      android:layout_marginTop="10dp"
+      android:padding="20dp"
+      />
+
+  <LinearLayout
+    android:id="@+id/layout_newest"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:orientation="horizontal">
+
+  <TextView
+    android:id="@+id/txt_newest"
+    android:padding="20dp"
+    android:textSize="24sp"
+    android:layout_weight="1"
+    android:textColor="@color/black"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="Trading Cards"/>
+
+    <TextView
+      android:id="@+id/txt_newestShowAll"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:gravity="center_vertical|end"
+      android:padding="20dp"
+      android:text="Show all >"
+      android:textColor="#0000ff"
+      android:textSize="14sp" />
+  </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/recyclerview_newestProducts"
+      android:layout_width="match_parent"
+      android:layout_height="80dp"
+      android:layout_marginTop="10dp"
+      android:padding="20dp"
+      />
+
+  </LinearLayout>
+
+
+</FrameLayout>
