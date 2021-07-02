@@ -3,14 +3,14 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
+  android:layout_height="wrap_content"
   android:padding="20dp">
 
   <ImageView
     android:id="@+id/img_card"
-    android:layout_width="70dp"
-    android:layout_height="70dp"
-    android:src="@drawable/tradingcard1"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:src="@drawable/tradingcard1f"
     tools:ignore="MissingConstraints" />
 
   <LinearLayout
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="50$"
-        android:textColor="#000000"
+        android:textColor="@color/orange"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,14 +55,15 @@
         android:id="@+id/btn_decrease"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:textColor="@color/orange"
         android:background="@drawable/btn_circle"
         android:gravity="center"
         android:text="-"
+        android:layout_marginRight="20dp"
+        android:textColor="@color/orange"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="130dp" />
+        app:layout_constraintEnd_toStartOf="@+id/txt_value"
+        app:layout_constraintTop_toTopOf="parent" />
 
       <TextView
         android:id="@+id/txt_value"
@@ -70,11 +71,11 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="1"
+        android:layout_marginRight="20dp"
         android:textColor="#000000"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_increase"
-        app:layout_constraintStart_toEndOf="@+id/btn_decrease"
         app:layout_constraintTop_toTopOf="parent" />
 
       <TextView
@@ -83,12 +84,12 @@
         android:layout_height="35dp"
         android:background="@drawable/btn_circle"
         android:gravity="center"
-        android:textSize="18sp"
-        android:textColor="@color/orange"
         android:text="+"
+        android:textColor="@color/orange"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="218dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -18,7 +18,7 @@
     android:orientation="horizontal">
   <TextView
     android:id="@+id/txt_all"
-    android:padding="20dp"
+    android:padding="10dp"
     android:textSize="24sp"
     android:layout_weight="1"
     android:textColor="@color/black"
@@ -32,7 +32,7 @@
       android:layout_height="match_parent"
       android:layout_weight="1"
       android:gravity="center_vertical|end"
-      android:padding="20dp"
+      android:padding="10dp"
       android:text="Show all >"
       android:textColor="#0000ff"
       android:textSize="14sp" />
@@ -41,21 +41,20 @@
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/recyclerview_allProducts"
       android:layout_width="match_parent"
-      android:layout_height="80dp"
-      android:layout_marginTop="10dp"
-      android:padding="20dp"
+      android:layout_height="180dp"
+      android:padding="4dp"
       />
 
   <LinearLayout
     android:id="@+id/layout_topRaterd"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="10dp"
     android:orientation="horizontal">
 
   <TextView
     android:id="@+id/txt_topRated"
-    android:padding="20dp"
+    android:padding="10dp"
     android:textSize="24sp"
     android:layout_weight="1"
     android:textColor="@color/black"
@@ -69,7 +68,7 @@
       android:layout_height="match_parent"
       android:layout_weight="1"
       android:gravity="center_vertical|end"
-      android:padding="20dp"
+      android:padding="10dp"
       android:text="Show all >"
       android:textColor="#0000ff"
       android:textSize="14sp" />
@@ -79,8 +78,7 @@
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/recyclerview_topRatedProducts"
       android:layout_width="match_parent"
-      android:layout_height="80dp"
-      android:layout_marginTop="10dp"
+      android:layout_height="180dp"
       android:padding="20dp"
       />
 
@@ -88,12 +86,12 @@
     android:id="@+id/layout_newest"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="10dp"
     android:orientation="horizontal">
 
   <TextView
     android:id="@+id/txt_newest"
-    android:padding="20dp"
+    android:padding="10dp"
     android:textSize="24sp"
     android:layout_weight="1"
     android:textColor="@color/black"
@@ -107,7 +105,7 @@
       android:layout_height="match_parent"
       android:layout_weight="1"
       android:gravity="center_vertical|end"
-      android:padding="20dp"
+      android:padding="10dp"
       android:text="Show all >"
       android:textColor="#0000ff"
       android:textSize="14sp" />
@@ -116,8 +114,8 @@
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/recyclerview_newestProducts"
       android:layout_width="match_parent"
-      android:layout_height="80dp"
-      android:layout_marginTop="10dp"
+      android:layout_height="180dp"
+      android:layout_marginTop="0dp"
       android:padding="20dp"
       />
 

@@ -6,16 +6,16 @@ public class CardNames {
 
   public static LinkedHashMap<String, String> get() {
     LinkedHashMap<String,String> data = new LinkedHashMap<String, String>();
-      data.put("id1", "Introducing");
-      data.put("id2", "Occupation");
-      data.put("id3", "Numbers");
-      data.put("id4", "Family");
-      data.put("id5", "Home Appliances");
-      data.put("id6", "Tools");
-      data.put("id7", "Colours");
-      data.put("id8", "Office Appliances");
-      data.put("id9", "Plurals");
-      data.put("id10", "Present Tense Verbs");
+      data.put("id1", "");
+      data.put("id2", "");
+      data.put("id3", "");
+      data.put("id4", "");
+      data.put("id5", "");
+      data.put("id6", "");
+      data.put("id7", "");
+      data.put("id8", "");
+      data.put("id9", "");
+      data.put("id10", "");
 
     return data;
   }

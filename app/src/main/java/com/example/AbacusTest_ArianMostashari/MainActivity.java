@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment;
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
 
+  //setting up the bottom navigation
   private DrawerLayout adrawerLayout;
   private ActionBarDrawerToggle aToggle;
   @SuppressLint("NonConstantResourceId")
@@ -65,6 +66,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomePage()).commit();
   }
 
+  //setting up the drawer
   private void setUpTheDrawerLayout() {
     adrawerLayout = findViewById(R.id.drawer);
     aToggle = new ActionBarDrawerToggle(this, adrawerLayout, R.string.open, R.string.close);
@@ -106,7 +108,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     adrawerLayout.closeDrawer(GravityCompat.START);
     return true;
   }
-
 
 
   @Override
