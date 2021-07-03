@@ -8,13 +8,11 @@ import com.example.AbacusTest_ArianMostashari.Model.Cards;
 
 import java.util.List;
 
-import androidx.lifecycle.LiveData;
-
 public class CardsRepository {
 
   public CardsDao cardsDao;
 
-  public LiveData<List<Cards>> getAllCards;
+  public List<Cards> getAllCards;
 
   public CardsRepository(Application application){
     CardsDatabase database = CardsDatabase.getDatabaseInstance(application);
@@ -24,5 +22,9 @@ public class CardsRepository {
 
   public void addCards(Cards cards){
     cardsDao.addToCards(cards);
+  }
+
+  public List<Cards> getCardsByUserId(int id){
+    return cardsDao.getCardsByUserId(id);
   }
 }

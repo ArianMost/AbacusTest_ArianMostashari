@@ -4,7 +4,6 @@ import com.example.AbacusTest_ArianMostashari.Model.Cards;
 
 import java.util.List;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -13,8 +12,11 @@ import androidx.room.Query;
 public interface CardsDao {
 
   @Query("select * FROM cards_database")
-  LiveData<List<Cards>> getAllCards();
+  List<Cards> getAllCards();
   //List<Cards> getAllCards();
+
+  @Query("select * FROM cards_database WHERE customerId = :id")
+  List<Cards> getCardsByUserId(int id);
 
   @Insert
   void addToCards (Cards...cards);

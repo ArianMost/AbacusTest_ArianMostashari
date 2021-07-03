@@ -8,12 +8,11 @@ import com.example.AbacusTest_ArianMostashari.Repository.CardsRepository;
 import java.util.List;
 
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 
 public class CardsViewModel extends AndroidViewModel {
 
   public CardsRepository repository;
-  LiveData<List<Cards>> getAllCards;
+  public List<Cards> getAllCards;
 
   public CardsViewModel(Application application) {
     super(application);
@@ -22,7 +21,11 @@ public class CardsViewModel extends AndroidViewModel {
     getAllCards = repository.getAllCards;
   }
 
-  void addCards(Cards cards){
+  public void addCards(Cards cards){
     repository.addCards(cards);
+  }
+
+  public List<Cards> getCardsByUserId(int id){
+    return repository.getCardsByUserId(id);
   }
 }

@@ -13,6 +13,9 @@ public interface CustomersDao {
   @Query("select * FROM customers_database")
   List<Customers> getAllCustomers();
 
+  @Query("select * FROM customers_database WHERE customer_email = :email")
+  Customers getCustomerByEmail(String email);
+
   @Insert
   void addToCustomers (Customers...customers);
 }

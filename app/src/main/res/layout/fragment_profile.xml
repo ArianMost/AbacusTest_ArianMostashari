@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
-        android:text="Arian Mostashari"
+        android:text="A M"
         android:textColor="#03A9F4"
         android:textSize="21dp" />
 
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
-        android:text="arian992@gmail.com"
+        android:text="gmail.com"
         android:textColor="#03A9F4"
         android:textSize="21dp" />
     </LinearLayout>

@@ -23,4 +23,11 @@ public class CustomersRepository {
   public void addCustomers(Customers customers){
     customersDao.addToCustomers(customers);
   }
+
+  public Customers getCustomerById(String email){
+    return customersDao.getCustomerByEmail(email);
+
+  }
+
+
 }

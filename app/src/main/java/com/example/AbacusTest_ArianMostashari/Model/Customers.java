@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 public class Customers {
 
   @PrimaryKey(autoGenerate = true)
-  public int id;
+  public int customerId;
 
   @ColumnInfo(name = "customer_name")
   public String customerName;

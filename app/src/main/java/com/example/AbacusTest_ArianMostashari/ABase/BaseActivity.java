@@ -61,6 +61,6 @@ public class BaseActivity extends AppCompatActivity {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       window.setStatusBarColor(ContextCompat.getColor(getWindow().getContext(), R.color.status_bar_color));
     }
-
   }
+
 }

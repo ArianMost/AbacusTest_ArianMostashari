@@ -27,7 +27,7 @@ public abstract class CardsDatabase extends RoomDatabase {
 
   public static CardsDatabase getDatabaseInstance(Context context){
     if (INSTANCE == null){
-      INSTANCE = Room.databaseBuilder(context.getApplicationContext(), CardsDatabase.class, "cards_database").build();
+      INSTANCE = Room.databaseBuilder(context.getApplicationContext(), CardsDatabase.class, "cards_database").allowMainThreadQueries().build();
     }
     return INSTANCE;
   }

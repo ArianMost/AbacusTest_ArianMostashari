@@ -11,7 +11,7 @@ public class CartDb {
   public int cartId;
 
   @ColumnInfo(name = "customer_email")
-  public String customerEmail;
+  public String customerId;
 
   @ColumnInfo(name = "card_id")
   public String cardId;

@@ -9,14 +9,19 @@ import androidx.room.PrimaryKey;
 public class Cards {
 
   @PrimaryKey(autoGenerate = true)
-  public int id;
+  public int cardId;
 
-  @ColumnInfo(name = "cards_title")
-  public String cardsTitle;
+  public int customerId;
 
-  @ColumnInfo (name = "cards_info")
-  public String cardsInfo;
+  @ColumnInfo(name = "card_name")
+  public String cardName;
 
-  @ColumnInfo (name = "cards_pic")
-  public int cardspic;
+  @ColumnInfo(name = "card_image")
+  public int cardImage;
+
+  @ColumnInfo(name = "card_info")
+  public String cardInfo;
+
+  @ColumnInfo(name = "card_price")
+  public String cardPrice;
 }
