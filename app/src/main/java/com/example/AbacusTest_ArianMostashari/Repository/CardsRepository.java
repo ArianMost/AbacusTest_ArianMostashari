@@ -27,4 +27,12 @@ public class CardsRepository {
   public List<Cards> getCardsByUserId(int id){
     return cardsDao.getCardsByUserId(id);
   }
+
+  public void deleteCard(int id){
+    cardsDao.deleteCard(id);
+  }
+
+  public void deleteAllCards(){
+    cardsDao.deleteAllCards();
+  }
 }

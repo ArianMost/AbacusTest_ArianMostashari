@@ -52,7 +52,7 @@ public class AllProductAdapter extends RecyclerView.Adapter<AllProductAdapter.Vi
   public void onBindViewHolder(@NonNull AllProductAdapter.ViewHolder viewHolder, int position) {
     //give value to variables
     viewHolder.imgCard.setImageResource(cardModels.get(position).picture[0]);
-    viewHolder.txtPrice.setText(cardModels.get(position).price);
+    viewHolder.txtPrice.setText(cardModels.get(position).price + "$");
     viewHolder.txtName.setText(cardModels.get(position).name);
   }
 

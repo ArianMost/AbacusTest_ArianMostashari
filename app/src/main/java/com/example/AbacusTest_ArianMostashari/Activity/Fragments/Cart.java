@@ -1,11 +1,14 @@
 package com.example.AbacusTest_ArianMostashari.Activity.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.example.AbacusTest_ArianMostashari.Activity.Payment;
 import com.example.AbacusTest_ArianMostashari.Model.Cards;
 import com.example.AbacusTest_ArianMostashari.R;
 import com.example.AbacusTest_ArianMostashari.RecyclerView.CardModel;
@@ -31,6 +34,10 @@ import androidx.recyclerview.widget.RecyclerView;
 public class Cart extends Fragment {
 
   RecyclerView recyclerView;
+  TextView txtIsEmpty;
+  TextView txtTotalPrice;
+  Button btnBuy;
+  double totalprice;
   CartAdapter cartAdapter;
   ArrayList<CardModel> cardModels;
   String FILE_EMAIL = "Email.txt";
@@ -50,6 +57,19 @@ public class Cart extends Fragment {
     customersViewModel = ViewModelProviders.of(this).get(CustomersViewModel.class);
     cardsViewModel = ViewModelProviders.of(this).get(CardsViewModel.class);
     initListValue(rootView);
+    txtTotalPrice.setText(totalprice + "$");
+    btnBuy.setOnClickListener(v -> {
+      Intent intent = new Intent(getContext(), Payment.class);
+      getActivity().startActivity(intent);
+      });
+
+    //getFragmentManager().beginTransaction().detach(Cart.this).attach(Cart.this).commit();
+    //Fragment frg = getFragmentManager().findFragmentById(R.id.fragmentcart);
+    //final FragmentTransaction ft = getFragmentManager().beginTransaction();
+    //ft.detach(frg);
+    //ft.attach(frg);
+    //ft.commit();
+
 
 
     return rootView;
@@ -57,16 +77,9 @@ public class Cart extends Fragment {
 
   private void initListValue(View root) {
     recyclerView = root.findViewById(R.id.cartRecyclerView);
-    //create list of integer Arrays
-    //List<int[]>pics = new ArrayList<>();
-    //pics.add(new int[]{R.drawable.tradingcard1f, R.drawable.tradingcard1b});
-    //pics.add(new int[]{R.drawable.tradingcard2f, R.drawable.tradingcard2b});
-
-    //create string Array
-    //String [] names = {"Card 1","Card 2"};
-
-    //create float Array
-    //String [] prices = {"200", "320"};
+    txtIsEmpty = root.findViewById(R.id.txt_isEmpty);
+    txtTotalPrice = root.findViewById(R.id.txt_totalPrice);
+    btnBuy = root.findViewById(R.id.btn_buy);
 
 /*
     cardsViewModel.getCardsByUserId(customersViewModel.getCustomerById(customerEmail).customerId).observe(getActivity(), cards -> {
@@ -90,30 +103,52 @@ public class Cart extends Fragment {
       });
  */
     readEmail(FILE_EMAIL);
-    cardModels = new ArrayList<>();
-    //Initialize ArrayList
-    List<Cards> cards = cardsViewModel.getCardsByUserId(customersViewModel.getCustomerById(customerEmail).customerId);
-    for (Cards card: cards) {
-      int pic = card.cardImage;
-      int[] pics = {pic};
-      String name = card.cardName;
-      String price = card.cardPrice;
-      Log.i("Test", "name is: " + name);
-      Log.i("Test", "price is: " + price);
-      CardModel cardModel = new CardModel(pics, name, price);
-      cardModels.add(cardModel);
-    }
+    if (!customerEmail.isEmpty()){
+      cardModels = new ArrayList<>();
+      //Initialize ArrayList
+      List<Cards> cards = cardsViewModel.getCardsByUserId(customersViewModel.getCustomerById(customerEmail).customerId);
+      if (cards.isEmpty()){
+        txtIsEmpty.setText("The cart is empty!");
+      }
+      else {
+        txtIsEmpty.setText("The list of selected items:");
+        ArrayList<String> names = new ArrayList<>();
+        ArrayList<String> prices = new ArrayList<>();
+        int value;
+        for (Cards card: cards) {
+          prices.add(card.cardPrice);
+          //prevent duplication in the list
+          if (names.contains(card.cardName)){
+            int index = names.indexOf(card.cardName);
+            cardModels.get(index).setValue(cardModels.get(index).getValue()+ 1);
+          }else {
+            String name = card.cardName;
+            names.add(name);
+            value = 1;
+            int pic = card.cardImage;
+            int[] pics = {pic};
+            String price = card.cardPrice;
+            CardModel cardModel = new CardModel(pics, name, price, value, customerEmail, card.cardId);
+            cardModels.add(cardModel);
+          }
+        }
+        //calculate the total price
+        for (String price: prices) {
+          double dPrice = Double.parseDouble(price);
+          totalprice += dPrice;
+        }
+      }
 
-    //Design horizontal layout
-    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
-      getContext(), LinearLayoutManager.VERTICAL, false);
-    recyclerView.setLayoutManager(linearLayoutManager);
-    recyclerView.setItemAnimator(new DefaultItemAnimator());
+      //Design layout
+      LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
+        getContext(), LinearLayoutManager.VERTICAL, false);
+      recyclerView.setLayoutManager(linearLayoutManager);
+      recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-    //Initialize adapter
-    cartAdapter = new CartAdapter(cardModels, getContext());
-    recyclerView.setAdapter(cartAdapter);
-
+      //Initialize adapter
+      cartAdapter = new CartAdapter(cardModels, getContext(), this);
+      recyclerView.setAdapter(cartAdapter);
+      }
   }
 
 

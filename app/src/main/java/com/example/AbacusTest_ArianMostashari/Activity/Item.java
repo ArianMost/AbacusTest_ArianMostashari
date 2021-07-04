@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.AbacusTest_ArianMostashari.ABase.BaseActivity;
 import com.example.AbacusTest_ArianMostashari.DemoFragmentAdapter;
-import com.example.AbacusTest_ArianMostashari.Model.Cards;
+import com.example.AbacusTest_ArianMostashari.Model.Customers;
 import com.example.AbacusTest_ArianMostashari.R;
 import com.example.AbacusTest_ArianMostashari.ViewModel.CardsViewModel;
 import com.example.AbacusTest_ArianMostashari.ViewModel.CustomersViewModel;
@@ -101,23 +101,13 @@ public class Item extends BaseActivity {
 
     btnAdd.setOnClickListener(v -> {
       readEmail(FILE_EMAIL);
-      productName = txtName.getText().toString();
-      productPrice = txtPrice.getText().toString();
-      productPicture = pics[0];
-      creatCard(productName, productPrice, productPicture);
+      Customers.addingToCart(customerEmail, txtName, txtPrice, pics, customersViewModel, cardsViewModel);
+      //productName = txtName.getText().toString();
+      //productPrice = txtPrice.getText().toString();
+      //productPicture = pics[0];
+      //creatCard(productName, productPrice, productPicture);
     });
 
-  }
-
-  private void creatCard(String productName, String productPrice, int productPicture) {
-    Cards cards = new Cards();
-
-    cards.cardName = productName;
-    cards.cardPrice = productPrice;
-    cards.cardImage = productPicture;
-    cards.customerId = customersViewModel.getCustomerById(customerEmail).customerId;
-
-    cardsViewModel.addCards(cards);
   }
 
   public void readEmail(String fileName) {

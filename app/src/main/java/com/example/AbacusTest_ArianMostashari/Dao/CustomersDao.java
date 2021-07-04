@@ -6,6 +6,7 @@ import java.util.List;
 
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 @androidx.room.Dao
 public interface CustomersDao {
@@ -17,5 +18,8 @@ public interface CustomersDao {
   Customers getCustomerByEmail(String email);
 
   @Insert
-  void addToCustomers (Customers...customers);
+  void addToCustomers (Customers... customers);
+
+  @Update
+  void updateCustomer (Customers customers);
 }

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="#DDE0DDDD"
+  tools:context=".Activity.Payment">
+
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Payment"
+    android:textColor="@color/black"
+    android:textSize="21sp"
+    android:padding="20dp"
+    app:layout_constraintBottom_toTopOf="@+id/linearLayout2" />
+
+  <LinearLayout
+    android:id="@+id/linearLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/edt_round"
+    android:orientation="vertical"
+    android:padding="20dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.473"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.449">
+
+    <CheckBox
+      android:id="@+id/creditCard"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:button="@drawable/checkbox"
+      android:padding="10dp"
+      android:text="Credit/ Debit card"
+      android:textColor="#3A5D81" />
+
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="4dp"
+      android:layout_weight="1"
+      android:background="@drawable/line" />
+
+    <CheckBox
+      android:id="@+id/googlePay"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="5dp"
+      android:layout_marginBottom="5dp"
+      android:layout_weight="1"
+      android:button="@drawable/checkbox"
+      android:paddingLeft="10dp"
+      android:paddingRight="10dp"
+      android:text="Google pay"
+      android:textColor="#3A5D81" />
+
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="4dp"
+      android:layout_weight="1"
+      android:background="@drawable/line" />
+
+    <CheckBox
+      android:id="@+id/giftCard"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="5dp"
+      android:layout_marginBottom="5dp"
+      android:layout_weight="1"
+      android:button="@drawable/checkbox"
+      android:paddingLeft="10dp"
+      android:paddingRight="10dp"
+      android:text="Gift card"
+      android:textColor="#3A5D81" />
+
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="4dp"
+      android:layout_weight="1"
+      android:background="@drawable/line" />
+
+    <TextView
+      android:id="@+id/promocode"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:layout_weight="1"
+      android:button="@drawable/checkbox"
+      android:padding="10dp"
+      android:text="Use a promo code"
+      android:textColor="#5B5BDD" />
+
+
+    <Button
+      android:id="@+id/btn_pay"
+      android:layout_width="match_parent"
+      android:layout_height="60dp"
+      android:layout_marginTop="80dp"
+      android:background="@drawable/btn_round"
+      android:text="Pay"
+      android:textAllCaps="false"
+      android:textColor="#ffffff"
+      android:textSize="17sp"
+      app:layout_constraintTop_toBottomOf="@+id/edt_pass" />
+  </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

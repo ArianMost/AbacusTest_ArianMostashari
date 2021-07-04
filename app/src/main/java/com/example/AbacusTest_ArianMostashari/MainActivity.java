@@ -35,11 +35,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
           actionbarSetUp("Home page");
           selectedFragment = new HomePage();
           break;
-        case R.id.nav_tracking:
+        case R.id.nav_cart:
           actionbarSetUp("Cart");
           selectedFragment = new Cart();
           break;
-        case R.id.nav_dues:
+        case R.id.nav_myorders:
           actionbarSetUp("My orders");
           selectedFragment = new MyOrders();
           break;

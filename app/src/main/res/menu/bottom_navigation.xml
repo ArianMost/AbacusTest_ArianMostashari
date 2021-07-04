@@ -5,11 +5,11 @@
     android:icon="@drawable/ic_home_grey_24dp"
     android:title="Home page"/>
 
-  <item android:id="@+id/nav_tracking"
+  <item android:id="@+id/nav_cart"
     android:icon="@drawable/ic_baseline_shopping_cart_24"
     android:title="Cart"/>
 
-  <item android:id="@+id/nav_dues"
+  <item android:id="@+id/nav_myorders"
     android:icon="@drawable/ic_baseline_all_inbox_24"
     android:title="My orders"/>
 

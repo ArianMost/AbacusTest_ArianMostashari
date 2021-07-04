@@ -1,6 +1,5 @@
 package com.example.AbacusTest_ArianMostashari.Model;
 
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

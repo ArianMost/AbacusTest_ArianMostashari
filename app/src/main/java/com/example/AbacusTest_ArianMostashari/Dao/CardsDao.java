@@ -21,4 +21,9 @@ public interface CardsDao {
   @Insert
   void addToCards (Cards...cards);
 
+  @Query("DELETE FROM cards_database WHERE cardId = :id")
+  void deleteCard(int id);
+
+  @Query("DELETE FROM cards_database")
+  void deleteAllCards();
 }

@@ -52,7 +52,7 @@ public class HomePage extends Fragment {
     //Initialize ArrayList
     cardModels = new ArrayList<>();
     for (int i = 0 ; i < names.length ; i++){
-      CardModel cardModel = new CardModel(pics.get(i), names[i], prices[i]);
+      CardModel cardModel = new CardModel(pics.get(i), names[i], prices[i], 0, "", 0);
       cardModels.add(cardModel);
     }
 

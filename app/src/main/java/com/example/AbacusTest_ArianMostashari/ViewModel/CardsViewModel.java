@@ -28,4 +28,12 @@ public class CardsViewModel extends AndroidViewModel {
   public List<Cards> getCardsByUserId(int id){
     return repository.getCardsByUserId(id);
   }
+
+  public void deleteCard(int id){
+    repository.deleteCard(id);
+  }
+
+  public void deleteAllCards(){
+    repository.deleteAllCards();
+  }
 }
