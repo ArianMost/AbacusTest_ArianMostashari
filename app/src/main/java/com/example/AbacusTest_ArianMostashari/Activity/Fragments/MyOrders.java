@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.AbacusTest_ArianMostashari.ABase.BaseFragment;
 import com.example.AbacusTest_ArianMostashari.R;
 import com.example.AbacusTest_ArianMostashari.RecyclerView.CardModel;
 import com.example.AbacusTest_ArianMostashari.RecyclerView.MyOrdersAdapter;
@@ -14,14 +15,13 @@ import com.example.AbacusTest_ArianMostashari.ViewModel.MyOrdersViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class MyOrders extends Fragment {
+public class MyOrders extends BaseFragment {
 
   MyOrdersViewModel myOrdersViewModel;
   RecyclerView recyclerView;
@@ -52,9 +52,10 @@ public class MyOrders extends Fragment {
     txtIsEmpty = root.findViewById(R.id.txt_isEmpty);
 
 
+    cardModels = new ArrayList<>();
     List<com.example.AbacusTest_ArianMostashari.Model.MyOrders> myOrders = myOrdersViewModel.getAllOrders;
     if (myOrders.isEmpty()){
-      txtIsEmpty.setText("The cart is empty!");
+      txtIsEmpty.setText("The list of orders is empty!");
     }else {
       txtIsEmpty.setText("The list of purchased items:");
       ArrayList<String> names = new ArrayList<>();
@@ -77,6 +78,7 @@ public class MyOrders extends Fragment {
       }
     }
     //Design layout
+
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
       getContext(), LinearLayoutManager.VERTICAL, false);
     recyclerView.setLayoutManager(linearLayoutManager);

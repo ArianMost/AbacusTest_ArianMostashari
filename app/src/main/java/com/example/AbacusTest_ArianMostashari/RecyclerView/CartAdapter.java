@@ -16,6 +16,9 @@ import com.example.AbacusTest_ArianMostashari.ViewModel.CustomersViewModel;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,11 +32,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
   CardsViewModel cardsViewModel;
   Cart cart;
   int id;
+  FragmentActivity fragmentActivity;
 
-  public CartAdapter(ArrayList<CardModel> cardModels, Context context, Cart cart) {
+  public CartAdapter(ArrayList<CardModel> cardModels, Context context, Cart cart , FragmentActivity fragmentActivity) {
     this.cardModels = cardModels;
     this.context = context;
     this.cart = cart;
+    this.fragmentActivity = fragmentActivity;
   }
 
   @NonNull
@@ -49,18 +54,25 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
       cardsViewModel = ViewModelProviders.of(cart).get(CardsViewModel.class);
       Customers.addingToCart(email, viewHolder.txtName, viewHolder.txtPrice, pics, customersViewModel, cardsViewModel);
       //increase the value on the list
-      int val = Integer.parseInt(viewHolder.txtValue.getText().toString()) +1;
-      viewHolder.txtValue.setText(val+ "");
+      //int val = Integer.parseInt(viewHolder.txtValue.getText().toString()) +1;
+      //viewHolder.txtValue.setText(val+ "");
     });
     //set the decrease button
     viewHolder.btnDecrease.setOnClickListener(v -> {
       //removing data from the database
       customersViewModel = ViewModelProviders.of(cart).get(CustomersViewModel.class);
       cardsViewModel = ViewModelProviders.of(cart).get(CardsViewModel.class);
+      id = cardModels.get(viewHolder.getAdapterPosition()).cardId;
       Customers.removingFromCart(id, cardsViewModel);
+      Fragment frg = null;
+      frg = fragmentActivity.getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+      final FragmentTransaction ft = fragmentActivity.getSupportFragmentManager().beginTransaction();
+      ft.detach(frg);
+      ft.attach(frg);
+      ft.commit();
       //decrease the value on the list
-      int val = Integer.parseInt(viewHolder.txtValue.getText().toString()) -1;
-      viewHolder.txtValue.setText(val+ "");
+      //int val = Integer.parseInt(viewHolder.txtValue.getText().toString()) -1;
+      //viewHolder.txtValue.setText(val+ "");
     });
     return viewHolder;
   }
@@ -69,7 +81,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
   public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
     //give value to variables
     email = cardModels.get(position).email;
-    id = cardModels.get(position).cardId;
     pics = new int[]{cardModels.get(position).picture[0]};
     viewHolder.imgCard.setImageResource(cardModels.get(position).picture[0]);
     viewHolder.txtPrice.setText(cardModels.get(position).price);

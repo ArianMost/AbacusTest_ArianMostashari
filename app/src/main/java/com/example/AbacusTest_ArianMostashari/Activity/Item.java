@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.AbacusTest_ArianMostashari.ABase.BaseActivity;
 import com.example.AbacusTest_ArianMostashari.DemoFragmentAdapter;
@@ -101,7 +102,13 @@ public class Item extends BaseActivity {
 
     btnAdd.setOnClickListener(v -> {
       readEmail(FILE_EMAIL);
-      Customers.addingToCart(customerEmail, txtName, txtPrice, pics, customersViewModel, cardsViewModel);
+      //check if the user is registered
+      if (customerEmail.isEmpty()){
+        Toast.makeText(this, "Please log in...", Toast.LENGTH_SHORT).show();
+      }else {
+        Customers.addingToCart(customerEmail, txtName, txtPrice, pics, customersViewModel, cardsViewModel);
+        Toast.makeText(this, "Item added to the cart...", Toast.LENGTH_SHORT).show();
+      }
       //productName = txtName.getText().toString();
       //productPrice = txtPrice.getText().toString();
       //productPicture = pics[0];

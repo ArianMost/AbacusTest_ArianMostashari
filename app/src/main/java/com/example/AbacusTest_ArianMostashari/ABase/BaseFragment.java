@@ -11,7 +11,7 @@ public class BaseFragment extends Fragment {
 
   public void changeFragmentTo(Fragment selectedFragment) {
     FragmentManager manager = getActivity().getSupportFragmentManager();
-    manager.beginTransaction().replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
+    manager.beginTransaction().replace(R.id.fragment_container, selectedFragment, null).addToBackStack(null).commit();
   }
 
 }

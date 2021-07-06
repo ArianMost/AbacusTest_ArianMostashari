@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.AbacusTest_ArianMostashari.ABase.BaseFragment;
@@ -26,6 +27,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 public class Register extends BaseFragment {
 
+  TextView txtOkPass;
   EditText edtName;
   EditText edtSurname;
   EditText edtPhone;
@@ -34,10 +36,12 @@ public class Register extends BaseFragment {
   EditText  edtPass;
   EditText  edtPassRepeat;
   ImageView imgOkPass;
+  ImageView imgOkPassRepeat;
   Button btnRegister;
   ScrollView scrollbar;
   Boolean passIsOkay =false;
   Boolean passRepeatIsOkay =false;
+  Boolean emailIsOkay =false;
   Handler handler;
   String customerName, customerSurname, customerEmail, customerPhone, customerAddress, customerPass;
   CustomersViewModel customersViewModel;
@@ -51,40 +55,87 @@ public class Register extends BaseFragment {
     View rootView = inflater.inflate(R.layout.fragment_register, container, false);
 
     setTheComponents(rootView);
-    checkPassValidity();
     customersViewModel = ViewModelProviders.of(getActivity()).get(CustomersViewModel.class);
 
-    btnRegister.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        if (edtName.getText().length() > 0 && edtSurname.getText().length() > 0 && edtPhone.getText().length() > 0
-          && edtEmail.getText().length() > 0 && edtAddress.getText().length() > 0 && edtPass.getText().length() > 0
-          && edtPassRepeat.getText().length() > 0){
-          if (passIsOkay && passRepeatIsOkay){
-            customerName = edtName.getText().toString();
-            customerSurname = edtSurname.getText().toString();
-            customerEmail = edtEmail.getText().toString();
-            customerPhone = edtPhone.getText().toString();
-            customerAddress = edtAddress.getText().toString();
-            customerPass = edtPass.getText().toString();
-            creatCustomer(customerName, customerSurname, customerEmail, customerPhone, customerAddress, customerPass);
-            saveEmail(edtEmail.getText().toString());
-            Toast.makeText(getContext(), "Your account has been successfully created.", Toast.LENGTH_SHORT).show();
-            changeFragmentTo(new HomePage());
+    //run these functions every 200millis
+      handler = new Handler();
+      Thread thread = new Thread(() -> {
+        while (btnRegister.getText().equals("Register")) {
+          try {
+            handler.post(() -> {
+              emailIsOkay = checkEmailValidity(edtEmail.getText().toString());
+              passIsOkay = checkPassValidity(edtPass.getText().toString());
+              passRepeatIsOkay = checkPassRepeatValidity(edtPassRepeat.getText().toString(), edtPass.getText().toString());
+            });
+            Thread.sleep(200);
+          } catch (InterruptedException e) {
+            e.printStackTrace();
           }
-          else {
-            Toast.makeText(getContext(), "Please check your password", Toast.LENGTH_SHORT).show();
-          }
-        }else
-        {
-          Toast.makeText(getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
-
         }
+      });
+      thread.start();
+
+      //do not accept empty fields
+    btnRegister.setOnClickListener(v -> {
+      if (edtName.getText().length() > 0 && edtSurname.getText().length() > 0 && edtPhone.getText().length() > 0
+        && edtEmail.getText().length() > 0 && edtAddress.getText().length() > 0 && edtPass.getText().length() > 0
+        && edtPassRepeat.getText().length() > 0){
+        if (passIsOkay && passRepeatIsOkay && emailIsOkay){
+          //save customers data
+          customerName = edtName.getText().toString();
+          customerSurname = edtSurname.getText().toString();
+          customerEmail = edtEmail.getText().toString();
+          customerPhone = edtPhone.getText().toString();
+          customerAddress = edtAddress.getText().toString();
+          customerPass = edtPass.getText().toString();
+          creatCustomer(customerName, customerSurname, customerEmail, customerPhone, customerAddress, customerPass);
+          saveEmail(edtEmail.getText().toString());
+          Toast.makeText(getContext(), "Your account has been successfully created.", Toast.LENGTH_SHORT).show();
+          changeFragmentTo(new HomePage());
+        }
+        else {
+          Toast.makeText(getContext(), "Please check your email or password", Toast.LENGTH_SHORT).show();
+        }
+      }else
+      {
+        Toast.makeText(getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
       }
     });
 
 
     return rootView;
+  }
+
+
+
+  private boolean checkEmailValidity(String email) {
+    if (email == null) {
+      return false;
+    } else {
+      return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+  }
+
+  private boolean checkPassValidity(String pass) {
+                if (pass.length()>5) {
+                  imgOkPass.setVisibility(View.VISIBLE);
+                  txtOkPass.setVisibility(View.GONE);
+                  return true;
+                } else {
+                  imgOkPass.setVisibility(View.GONE);
+                  txtOkPass.setVisibility(View.VISIBLE);
+                  return false;
+                }
+  }
+
+  public boolean checkPassRepeatValidity(String passRepeat, String pass) {
+                if (passRepeat.equals(pass) && passRepeat.length() > 0) {
+                  imgOkPassRepeat.setVisibility(View.VISIBLE);
+                  return true;
+                } else {
+                  imgOkPassRepeat.setVisibility(View.GONE);
+                  return false;
+                }
   }
 
   private void creatCustomer(String customerName, String customerSurname, String customerEmail, String customerPhone, String customerAddress, String customerPass) {
@@ -99,37 +150,6 @@ public class Register extends BaseFragment {
     customersViewModel.addCustomers(customers);
   }
 
-  public void checkPassValidity() {
-    handler = new Handler();
-    Thread thread = new Thread(new Runnable() {
-      @Override
-      public void run() {
-        while (btnRegister.getText().equals("Register")) {
-          try {
-            handler.post(new Runnable() {
-              @Override
-              public void run() {
-                if (edtPassRepeat.getText().toString().equals(edtPass.getText().toString()) && edtPassRepeat.getText().length() > 0) {
-                  passIsOkay = true;
-                  passRepeatIsOkay = true;
-                  imgOkPass.setVisibility(View.VISIBLE);
-                } else {
-                  passIsOkay = false;
-                  passRepeatIsOkay = false;
-                  imgOkPass.setVisibility(View.GONE);
-                }
-              }
-            });
-            Thread.sleep(300);
-          } catch (InterruptedException e) {
-            e.printStackTrace();
-          }
-        }
-      }
-    });
-    thread.start();
-  }
-
   private void setTheComponents(View root) {
     edtName = root.findViewById(R.id.edt_name);
     edtSurname = root.findViewById(R.id.edt_surname);
@@ -140,7 +160,9 @@ public class Register extends BaseFragment {
     edtPassRepeat = root.findViewById(R.id.edt_passRepeat);
     btnRegister = root.findViewById(R.id.btn_register);
     imgOkPass = root.findViewById(R.id.img_okPass);
+    imgOkPassRepeat = root.findViewById(R.id.img_okPassRepeat);
     scrollbar = root.findViewById(R.id.scrollBar);
+    txtOkPass = root.findViewById(R.id.txt_okPass);
   }
 
 

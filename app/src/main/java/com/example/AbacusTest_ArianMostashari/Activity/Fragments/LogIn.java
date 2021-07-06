@@ -2,7 +2,6 @@ package com.example.AbacusTest_ArianMostashari.Activity.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,8 +51,6 @@ public class LogIn extends BaseFragment {
 
     btnEnter.setOnClickListener(v -> {
       for (Customers customer: customers) {
-        Log.i("Test", "the email is: " + customer.customerEmail);
-        Log.i("Test", "the pass is: " + customer.customerPassword);
         String email = customer.customerEmail;
         String pass = customer.customerPassword;
         if (edtEmail.getText().toString().equals(email) && edtPass.getText().toString().equals(pass)){

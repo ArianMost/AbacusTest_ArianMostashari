@@ -1,11 +1,13 @@
 package com.example.AbacusTest_ArianMostashari.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.AbacusTest_ArianMostashari.ABase.BaseActivity;
+import com.example.AbacusTest_ArianMostashari.MainActivity;
 import com.example.AbacusTest_ArianMostashari.Model.Cards;
 import com.example.AbacusTest_ArianMostashari.Model.MyOrders;
 import com.example.AbacusTest_ArianMostashari.R;
@@ -61,7 +63,8 @@ public class Payment extends BaseActivity {
       cardsViewModel.deleteAllCards();
 
       Toast.makeText(this, "Payment successful!", Toast.LENGTH_SHORT).show();
-      finish();
+      Intent intent = new Intent(this, MainActivity.class);
+      startActivity(intent);
     });
 
   }

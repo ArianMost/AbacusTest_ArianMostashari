@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
           selectedFragment = new MyOrders();
           break;
       }
-      getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+      getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).addToBackStack("fragment_container").commit();
       return true;
     };
 
@@ -104,7 +104,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         selectedFragment = new HomePage();
         break;
     }
-    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).addToBackStack("fragment_container").commit();
     adrawerLayout.closeDrawer(GravityCompat.START);
     return true;
   }
